@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+<style>
+#dice {
+  font-size: 100px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+  color:red;
+  transform: rotate(60deg);
+}
+
+</style>
+<div id="dice">⚀</div>
+<button onclick="rollDice()">Roll Dice</button>
+<script>
+function rollDice() {
+  const dice = document.getElementById("dice");
+  let count = 0;
+
+  const interval = setInterval(() => {
+    const randomValue = Math.floor(Math.random() * 6) + 1;
+    dice.textContent = getDiceFace(randomValue);
+    dice.style.transform = `rotate(${count * 60}deg)`;
+    count++;
+    if (count > 10) {
+      clearInterval(interval);
+    }
+  }, 100);
+}
+
+function getDiceFace(value) {
+  const faces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+  return faces[value - 1];
+}
+
+</script>
+
+</body>
+</html>
+
+
